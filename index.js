@@ -6,6 +6,7 @@ for (var index = 0; index < numDrumButtons; index++) {
     .querySelectorAll(".drum")
     [index].addEventListener("click", function () {
       makeSound(this.innerHTML);
+      buttonAnimation(this.innerHTML)
     });
 }
 
@@ -14,6 +15,7 @@ for (var index = 0; index < numDrumButtons; index++) {
   document.addEventListener("keydown", function (event) {
       // use key properties which returns a string representing the key value of the key represented by the event.
       makeSound(event.key);
+      buttonAnimation(event.key)
     });
 }
 
@@ -57,4 +59,15 @@ function makeSound(key) {
       console.log(this.innerHTML);
       break;
   }
+}
+
+// change animation
+function buttonAnimation(key){
+  // add pressed css class to button or key that's pressed
+  var pressedButton = document.querySelector(`.${key}`)
+  pressedButton.classList.add("pressed")
+
+  // remove class pressed after 100ms
+  setTimeout(function () {pressedButton.classList.remove("pressed")}, 100)
+
 }
